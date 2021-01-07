@@ -15,7 +15,7 @@ load('./globalModels/estimation_model_wr1.mat')
 % For this script, you need to give a concentration for the first
 % session of a patient (calibration)!
 
-inputData='';
+inputData='Estimation_Input.mat';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Load data
@@ -24,8 +24,8 @@ load(inputData)
 % Define the index of the features to use; models were trained with them
 idxFeat=[8,9,10]+2;
 
-% remove patients with less than 3 sessions
-featureMatrixPerPatient=featureMatrixPerPatient(~cellfun(@isempty,featureMatrixPerPatient(:,3)),:);
+% remove patients with less than 2 sessions
+featureMatrixPerPatient=featureMatrixPerPatient(~cellfun(@isempty,featureMatrixPerPatient(:,2)),:);
 
 % initialize different arrays needed for the fitting
 featureMatrixTraining2=reshape(featureMatrixPerPatient,numel(featureMatrixPerPatient),1);
